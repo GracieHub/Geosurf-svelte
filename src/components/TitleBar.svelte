@@ -18,7 +18,7 @@
     {#if $user.email}
       <div class="is-size-7">{$user.email} </div>
     {:else}
-      <div class="is-size-7">Donation-Svelte 0.2</div>
+      <div class="is-size-7">Geosurf-Svelte 0.2</div>
     {/if}
   </div>
 </div>
