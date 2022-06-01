@@ -1,7 +1,5 @@
 <script>
     import {getContext, onMount} from 'svelte'
-    import {collection} from "../stores";
-
 
     const geosurfService = getContext("GeosurfService");
     let surfspotList = [];
@@ -38,9 +36,6 @@
           </td>
           <td>
             {surfspots.typeOfWave}
-          </td>
-          <td>
-            {surfspots.collectionid}
           </td>
           <td>
            <a href="/#/surfspot/{surfspots._id}" class=“button”>

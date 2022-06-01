@@ -2,22 +2,8 @@
     import homer2 from "/src/assets/homer2.png";
     import TitleBar from "../components/TitleBar.svelte";
     import MainNavigator from "../components/MainNavigator.svelte";
+    import SurfspotView from "../components/SurfspotView.svelte";
 
-    import {getContext, onMount} from 'svelte'
-    import {surfspot} from "../stores";
-
-    const geosurfService = getContext("GeosurfService");
-    
-    let surfspotBySurfspotId = [];
-    let url = ``;
-
-    onMount(async (request) => {
-        url = window.location.href
-        console.log(url)
-        let parsedURL = url.substring(34)
-        surfspotBySurfspotId  = await geosurfService.getSurfspotBySurfspotId(parsedURL);
-        console.log(surfspotBySurfspotId)
-    });
   </script>
   
   <div class="columns is-vcentered">
@@ -28,9 +14,15 @@
       <MainNavigator/>
     </div>
   </div>
+  <br>
+  <div class="columns">
+    <div class="column has-text-centered">
+      <img alt="Homer" src={homer2} width="300"/>
+    </div>
+    <div class="column box has-text-centered">
+      <h1 class="title is-4">SurfSpot Details</h1>
+      <SurfspotView/>
+    </div>
+  </div>
 
-  <div>{$surfspot.id}</div>
-  <div>{$surfspot.name}</div>
-  <div>{$surfspot.latitude}</div>
-  <div>{$surfspot.longitude}</div>
-  <div>{$surfspot.typeOfWave}</div>
+

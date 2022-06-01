@@ -25,7 +25,7 @@ const geosurfService = getContext("GeosurfService");
         latitude: latitude,
         longitude: longitude,
         typeOfWave: typeOfWave,
-        collection: collection._id,
+    //    collection: collection._id,
       };
     const success = await geosurfService.addSurfspot(surfspot)
         if (success) {
