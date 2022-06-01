@@ -5,11 +5,19 @@ export const user = writable({
   token: "",
 });
 
+
 export const surfspot = writable({
-    id: ""
+  id: "",
+  name: "",
+  latitude: "",
+  longitude: "",
+  typeOfWave: "",
 });
 
-export const collection = writable({
-    id: ""
+export const colleciton = writable({
+    id: "",
+    title: "",
+    parsedURL:","
 });
+
 

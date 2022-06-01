@@ -6,9 +6,9 @@
   import Surfspot from "./pages/Surfspot.svelte";
   import Dashboard from "./pages/Dashboard.svelte";
   import Router from "svelte-spa-router";
-  import Collection from "./pages/Surfspot.svelte"
-  import {GeosurfService} from "./services/geosurf-service";
+  import Collection from "./pages/Collection.svelte"
   import {setContext} from "svelte";
+  import { GeosurfService } from "./services/geosurf-service";
 
   setContext("GeosurfService", new GeosurfService("http://localhost:4000"));
 
@@ -20,6 +20,7 @@
     "/logout": Main,
     "/dashboard": Dashboard,
     "/surfspot": Surfspot,
+    "/surfspot/*": Surfspot,
     "/collection": Collection,
     "/collection/*": Collection,
   }

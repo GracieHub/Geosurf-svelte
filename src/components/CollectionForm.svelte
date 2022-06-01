@@ -11,7 +11,7 @@
     async function addCollection() {
       let success = await geosurfService.addCollection(title)
           if (success) {
-             await push("/");             //display the colleciton list upon addition of new collection
+             await push("/dashboard");             //display the colleciton list upon addition of new collection
           } else {
               errorMessage = "error adding Collection";
           }

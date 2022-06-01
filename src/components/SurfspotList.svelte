@@ -1,20 +1,22 @@
 <script>
     import {getContext, onMount} from 'svelte'
-    import {push} from "svelte-spa-router";
     import {collection} from "../stores";
 
-    
+
     const geosurfService = getContext("GeosurfService");
     let surfspotList = [];
+    let url = ``;
+  
+    onMount(async (request) => {
+      url = window.location.href
+      console.log(url)
+      let parsedURL = url.substring(35)
+      surfspotList = await geosurfService.getSurfspotsByCategoryId(parsedURL);
+      console.log(surfspotList)
+  });
 
-  
-    onMount(async () => {
-      surfspotList = await geosurfService.getCollectionSurfspots($collection.id);
-      console.log("currently in surfspot list by specific collection")
-      console.log(surfspotList);
-    });
-  </script>
-  
+
+</script>
   <table class="table is-fullwidth">
     <thead>
       <th>SurfSpot Name</th>
@@ -23,7 +25,7 @@
       <th>Type of Wave</th>
     </thead>
     <tbody>
-      {#each surfspotList as surfspots}
+        {#each surfspotList as surfspots}
         <tr>
           <td>
             {surfspots.name}
@@ -35,9 +37,19 @@
             {surfspots.longitude}
           </td>
           <td>
-           {surfspots.typeOfWave}
+            {surfspots.typeOfWave}
+          </td>
+          <td>
+            {surfspots.collectionid}
+          </td>
+          <td>
+           <a href="/#/surfspot/{surfspots._id}" class=“button”>
+            <span class="icon is-small">
+             <i class="fas fa-folder-open"></i>
+            </span>
+            </a>
           </td>
         </tr>
-      {/each}
+        {/each}
     </tbody>
-  </table>
+</table>

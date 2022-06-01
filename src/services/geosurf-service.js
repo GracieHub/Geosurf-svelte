@@ -1,5 +1,5 @@
 import axios from "axios";
-import {user, surfspot, collection} from "../stores";
+import {user, surfspot} from "../stores";
 
 
 export class GeosurfService {
@@ -9,10 +9,17 @@ export class GeosurfService {
 
   constructor(baseUrl) {
     this.baseUrl = baseUrl;
-    if (localStorage.surfspot) {
-      axios.defaults.headers.common["Authorization"] = "Bearer " + JSON.parse(localStorage.surfspot);
+    const surfspotCredentials = localStorage.poi;
+    if (surfspotCredentials) {
+      const savedUser = JSON.parse(surfspotCredentials);
+      user.set({
+        email: savedUser.email,
+        token: savedUser.token,
+      });
+      axios.defaults.headers.common["Authorization"] = "Bearer " + savedUser.token;
+    }
   }
-  }
+  
 
   async login(email, password) {
     try {
@@ -65,30 +72,10 @@ export class GeosurfService {
     }
   }
 
-/*  async getCollectionSurfspots(id) {
+  async getSurfspotsByCategoryId(parsedURL) {
     try {
-      const response = await axios.get(this.baseUrl + "/api/collection/"+id);
-      await response.data;
-      collection.set({
-          id: response.data.id,
-      });
-      console.log(response.data);
+      const response = await axios.get(this.baseUrl + "/api/collections/"+parsedURL+"/surfspots");
       return response.data;
-  } catch (error) {
-      return [];
-  }
-} */
-
-
-  async getCollectionSurfspots(id) {
-    try {
-      const response = await axios.get(this.baseUrl + "/api/collections/"+id+"/surfspots");
-      this.surfspotByCollectionList = await response.data;
-      collection.set({
-          id: id,
-      })
-      console.log(response.data);
-      return this.surfspotByCollectionList;
   } catch (error) {
       return [];
   }
@@ -125,17 +112,20 @@ export class GeosurfService {
   }
 
 
-  async getOneCollection(id) {
+  async getSurfspotBySurfspotId(parsedURL) {
     try {
-        const response = await axios.get(this.baseUrl + "/api/collections/"+id)
-        this.collection = await response.data;
-        collection.set({
-            id: id
-        })
-        console.log(response.data);
-        return this.collection;
+      const response = await axios.get(this.baseUrl + "/api/surfspots/" + parsedURL);
+      surfspot.set({
+        id: response.data._id,
+        name: response.data.name,
+        latitude: response.data.latitude,
+        longitude: response.data.longitude,
+        typeOfWave: response.data.typeOfWave,
+      });
+      return response.data
     } catch (error) {
-        // return [];
+      return [];
     }
-}
+  }
+
 }

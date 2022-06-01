@@ -1,6 +1,6 @@
 <script>
   import homer from "/src/assets/homer2.png";
-  import SurfspotList from "../components/SurfspotkList.svelte";
+  import SurfspotList from "../components/SurfspotList.svelte";
   import TitleBar from "../components/TitleBar.svelte";
   import MainNavigator from "../components/MainNavigator.svelte";
   import SurfspotForm from "../components/SurfspotForm.svelte";
@@ -20,7 +20,7 @@
     <img alt="Homer" src={homer} width="300"/>
   </div>
   <div class="column box has-text-centered">
-    <h1 class="title is-4">Placemarks to date</h1>
+    <h1 class="title is-4">Surfspots to date</h1>
     <SurfspotList/>
   </div>
 </div>

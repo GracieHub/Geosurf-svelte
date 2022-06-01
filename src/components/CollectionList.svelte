@@ -1,22 +1,14 @@
 <script>
     import {getContext, onMount} from 'svelte'
-    import {push} from "svelte-spa-router";
-
-   // let id = "";
+    
     const geosurfService = getContext("GeosurfService");
 
     let collectionList =[];
-    let collection = "";
-    let errorMessage = "";
-
 
     onMount(async () => {
       collectionList = await geosurfService.getCollections();
     });
 
-    async function surfspotsInCollection(id) {
-        collection = await geosurfService.getOneCollection(id)
-    } 
 
   </script>
   
