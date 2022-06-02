@@ -7,8 +7,11 @@
   import Dashboard from "./pages/Dashboard.svelte";
   import Router from "svelte-spa-router";
   import Collection from "./pages/Collection.svelte"
+  import Map from "./pages/Map.svelte"
   import {setContext} from "svelte";
-  import { GeosurfService } from "./services/geosurf-service";
+  import { GeosurfService } from "./services/geosurf-service"; 
+  import Charts from "./pages/Charts.svelte";
+
 
   setContext("GeosurfService", new GeosurfService("http://localhost:4000"));
 
@@ -19,10 +22,12 @@
     "/report": Report,
     "/logout": Main,
     "/dashboard": Dashboard,
-    "/surfspot": Surfspot,
     "/surfspot/*": Surfspot,
     "/collection": Collection,
     "/collection/*": Collection,
+    "/map": Map,
+    "/charts": Charts,
+
   }
 </script>
 

@@ -1,5 +1,6 @@
 import axios from "axios";
 import {user, surfspot} from "../stores";
+import {push} from "svelte-spa-router";
 
 
 export class GeosurfService {
@@ -9,7 +10,7 @@ export class GeosurfService {
 
   constructor(baseUrl) {
     this.baseUrl = baseUrl;
-    const surfspotCredentials = localStorage.poi;
+    const surfspotCredentials = localStorage.surfspot;
     if (surfspotCredentials) {
       const savedUser = JSON.parse(surfspotCredentials);
       user.set({
@@ -30,7 +31,7 @@ export class GeosurfService {
           email: email,
           token: response.data.token,
         });
-        localStorage.geosurf = JSON.stringify({email: email, token: response.data.token});
+        localStorage.surfspot = JSON.stringify({email: email, token: response.data.token});
         return true;
       }
       return false;
@@ -67,6 +68,7 @@ export class GeosurfService {
     try {
       const response = await axios.get(this.baseUrl + "/api/surfspots");
       return response.data;
+     
     } catch (error) {
       return [];
     }
@@ -91,6 +93,15 @@ export class GeosurfService {
   } 
 
   async getCollections() {
+    try {
+      const response = await axios.get(this.baseUrl + "/api/collections");
+      return response.data
+    } catch (error) {
+      return [];
+    }
+  } 
+
+  async getCollectionsById() {
     try {
       const response = await axios.get(this.baseUrl + "/api/collections");
       return response.data
@@ -127,5 +138,15 @@ export class GeosurfService {
       return [];
     }
   }
+
+  async getUsers() {
+    try {
+        const response = await axios.get(this.baseUrl + "/api/users")
+        this.userList = await response.data;
+        return this.userList;
+    } catch (error) {
+        return [];
+    }
+}
 
 }

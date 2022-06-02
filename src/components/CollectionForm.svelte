@@ -2,6 +2,7 @@
     import {getContext, onMount} from "svelte";
     import {push} from "svelte-spa-router";
   
+
     let title = "";
     let message = "Enter Name of your new Collection of SurfSpots";
     let errorMessage = "";
