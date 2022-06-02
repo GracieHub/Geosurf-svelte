@@ -9,7 +9,7 @@
       url = window.location.href
       console.log(url)
       let parsedURL = url.substring(35)
-      surfspotList = await geosurfService.getSurfspotsByCategoryId(parsedURL);
+      surfspotList = await geosurfService.getSurfspotsByCollectionId(parsedURL);
       console.log(surfspotList)
   });
 

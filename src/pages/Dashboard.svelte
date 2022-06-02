@@ -1,5 +1,5 @@
 <script>
-  import homer2 from "/src/assets/homer2.png";
+ // import homer2 from "/src/assets/homer2.png";
   import CollectionForm from "../components/CollectionForm.svelte";
   import TitleBar from "../components/TitleBar.svelte";
   import MainNavigator from "../components/MainNavigator.svelte";

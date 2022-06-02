@@ -1,47 +1,50 @@
 <script>
-    import homer3 from "/src/assets/homer3.png";
-    import TitleBar from "../components/TitleBar.svelte";
-    import MainNavigator from "../components/MainNavigator.svelte";
-    import Chart from 'svelte-frappe-charts';
-    import {getContext, onMount} from "svelte";
-    const geosurfService = getContext("GeosurfService");
-  
-    let surfspotsByTypeOfWave = {
-      labels: [["Beginner", "Intermediate", "Advanced", "Pro"]],
-      datasets: [
-        {
-          values: [0,0,0,0]
-        }
-      ]
-    };
+  import homer3 from "/src/assets/homer3.png";
+  import TitleBar from "../components/TitleBar.svelte";
+  import MainNavigator from "../components/MainNavigator.svelte";
+  import Chart from 'svelte-frappe-charts';
+  import {getContext, onMount} from "svelte";
+
+  const geosurfService = getContext("GeosurfService");
+
+  let surfspotCount = 0;
+  let surfspotList =[];
 
 
-    function populateByTypeOfWave(collection) {
-        collection.forEach(surfspot => {
-        if (surfspot.typeOfWave == "Beginner") {
-          surfspotsByTypeOfWave.datasets[0].values[0] += surfspot.typeOfWave
-        } else if (surfspot.typeOfWave == "Intermediate") {
-          surfspotsByTypeOfWave.datasets[0].values[1] += surfspot.typeOfWave
-        } else if (surfspot.typeOfWave == "Advanced") {
-          surfspotsByTypeOfWave.datasets[0].values[2] += surfspot.typeOfWave
-        } else if (surfspot.ttypeOfWave == "Pro") {
-          surfspotsByTypeOfWave.datasets[0].values[3] += surfspot.typeOfWave
-        }
-      });
+  let surfspotsByTypeOfWave = {
+  labels: ["Beginner", "Intermediate", "Advanced", "Pro"],
+  datasets: [
+    {
+      values: [0, 0, 0, 0]
     }
+    ]
+  } 
 
+  function populateByTypeOfWave(surfspots) {
+    surfspotCount = surfspotList.length;
+    surfspots.forEach((surfspot) => {
+    if (surfspot.typeOfWave == "Beginner") {
+        surfspotsByTypeOfWave.datasets[0].values[0] += 1
+      } else if (surfspot.typeOfWave == "Intermediate") {
+        surfspotsByTypeOfWave.datasets[0].values[1] += 1
+      } else if (surfspot.typeOfWave == "Advanced") {
+        surfspotsByTypeOfWave.datasets[0].values[2] += 1
+      } else if (surfspot.typeOfWave == "Pro") {
+        surfspotsByTypeOfWave.datasets[0].values[3] += 1
+      }
+    })
+  }
 
+onMount(async () => {
+      let surfspotList = await geosurfService.getSurfspots();
+      populateByTypeOfWave(surfspotList);
+})
 
-
-    onMount(async () => {
-    let surfspotList = await geosurfService.getSurfspots();
-    populateByTypeOfWave(collection);
-    });
-  </script>
+</script>  
   
   <div class="columns is-vcentered">
     <div class="column is-two-thirds">
-      <TitleBar subTitle={"Donation Analytics"} title={"Donation Services Inc."}/>
+      <TitleBar subTitle={"Geosurf Analytics"} title={"Gesourf Services Inc."}/>
     </div>
     <div class="column">
       <MainNavigator/>
@@ -50,8 +53,8 @@
   
   <div class="columns">
     <div class="column box has-text-centered">
-      <h1 class="title is-4">Donations to date</h1>
-      <Chart data={surfspotsByTypeOfWave} type="pie"//>
+      <h1 class="title is-4">Geosurf Analytics</h1>
+      <Chart data={surfspotsByTypeOfWave} type="bar"/>
     </div>
     <div class="column has-text-centered">
       <img alt="Homer" src={homer3} width="300"/>

@@ -16,6 +16,7 @@ export class GeosurfService {
       user.set({
         email: savedUser.email,
         token: savedUser.token,
+        userid: savedUser.id
       });
       axios.defaults.headers.common["Authorization"] = "Bearer " + savedUser.token;
     }
@@ -30,6 +31,7 @@ export class GeosurfService {
         user.set({
           email: email,
           token: response.data.token,
+          userid: response.data.id
         });
         localStorage.surfspot = JSON.stringify({email: email, token: response.data.token});
         return true;
@@ -44,6 +46,7 @@ export class GeosurfService {
     user.set({
       email: "",
       token: "",
+      userid: "",
     });
     axios.defaults.headers.common["Authorization"] = "";
     localStorage.removeItem("surfspot");
@@ -74,7 +77,7 @@ export class GeosurfService {
     }
   }
 
-  async getSurfspotsByCategoryId(parsedURL) {
+  async getSurfspotsByCollectionId(parsedURL) {
     try {
       const response = await axios.get(this.baseUrl + "/api/collections/"+parsedURL+"/surfspots");
       return response.data;
@@ -83,9 +86,9 @@ export class GeosurfService {
   }
 } 
 
-  async addSurfspot(surfspot) {
+  async addSurfspot(surfspot, parsedURL) {
     try {
-        const response = await axios.post(this.baseUrl + "/api/collections/" + surfspot.collection + "/surfspot", surfspot);
+        const response = await axios.post(this.baseUrl + "/api/collections/" + parsedURL + "/surfspot", surfspot);
         return response.status == 200;
     } catch (error) {
         return false;

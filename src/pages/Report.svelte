@@ -7,7 +7,7 @@
   
   <div class="columns is-vcentered">
     <div class="column is-two-thirds">
-      <TitleBar subTitle={"Surf`spots so far..."} title={"Surf Collections."}/>
+      <TitleBar subTitle={"All Surf spots so far..."} title={"Surf Collections."}/>
     </div>
     <div class="column">
       <MainNavigator/>
@@ -18,7 +18,7 @@
       <img alt="Homer" src={homer2} width="300"/>
     </div>
     <div class="column box has-text-centered">
-      <h1 class="title is-4">Surfspots on website to date</h1>
+      <h1 class="title is-4">AllSurfspots on website to date</h1>
       <SurfspotListAll/>
     </div>
   </div>

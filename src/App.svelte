@@ -8,9 +8,9 @@
   import Router from "svelte-spa-router";
   import Collection from "./pages/Collection.svelte"
   import Map from "./pages/Map.svelte"
+  import Charts from "./pages/Charts.svelte";
   import {setContext} from "svelte";
   import { GeosurfService } from "./services/geosurf-service"; 
-  import Charts from "./pages/Charts.svelte";
 
 
   setContext("GeosurfService", new GeosurfService("http://localhost:4000"));

@@ -13,7 +13,11 @@ const dispatch = createEventDispatcher();
     let errorMessage = "";
     let message = "Enter All fields to add a spot";
     let selectedTypeOfWave = "";
+    let url = ``;
 
+    url = window.location.href
+      console.log(url)
+      let parsedURL = url.substring(35)
 
 const geosurfService = getContext("GeosurfService");
 
@@ -31,7 +35,7 @@ const geosurfService = getContext("GeosurfService");
         typeOfWave: selectedTypeOfWave,
         collection: collection._id,
       };
-    const success = await geosurfService.addSurfspot(surfspot)
+    const success = await geosurfService.addSurfspot(surfspot, parsedURL)
         if (success) {
           message = `You added ${name} to the ${collection.title} Collection`
           dispatch("message");

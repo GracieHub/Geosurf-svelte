@@ -1,5 +1,4 @@
 <script>
-  import homer from "/src/assets/homer2.png";
   import SurfspotList from "../components/SurfspotList.svelte";
   import TitleBar from "../components/TitleBar.svelte";
   import MainNavigator from "../components/MainNavigator.svelte";
