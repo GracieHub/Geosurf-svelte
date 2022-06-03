@@ -28,7 +28,7 @@
             {collection.title}
           </td>
           <td>
-            <a href="/#/collection/{collection._id}" class="icon is-small fas fa-th-list">
+            <a href="/#/collection/{collection._id}" class="icon is-small fas fa fa-map-pin">
             </a>
           </td>
         </tr>
