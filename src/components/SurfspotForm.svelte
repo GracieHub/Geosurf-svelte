@@ -50,7 +50,7 @@ const geosurfService = getContext("GeosurfService");
 
   
 </script>
-<form on:submit|preventDefault={addSurfspot}>
+<form on:submit|preventDefault={addSurfspot} >
   <div class="field">
     <label class="label" for="name">Enter SurfSpot Name</label> 
     <input bind:value={name} class="input" id="name" name="name" placeholder="SurfSpot Name" type="text">

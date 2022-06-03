@@ -14,11 +14,10 @@
   
     <section>
     <h4 class="uk-heading-bullet"><a href="/#/report">Show All SurfSpots</a></h4>
-    <br>
-    <table class="uk-table large">
+    <table class="uk-table large" style="font-size:25px;">
       <thead>
           <tr>
-              <th>Select Based on Category</th>
+              <th>Select Collection</th>
           </tr>
       </thead>
       <tbody>
@@ -28,7 +27,7 @@
             {collection.title}
           </td>
           <td>
-            <a href="/#/collection/{collection._id}" class="icon is-small fas fa-th-list">
+            <a href="/#/collection/{collection._id}" class="icon is-small fas fa fa-map-pin" style="font-size:30px;">
             </a>
           </td>
         </tr>

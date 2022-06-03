@@ -1,5 +1,5 @@
 <script>
-    import homer2 from "/src/assets/homer2.png";
+    import waveicon from "/src/assets/waveicon.png";
     import TitleBar from "../components/TitleBar.svelte";
     import MainNavigator from "../components/MainNavigator.svelte";
     import SurfspotView from "../components/SurfspotView.svelte";
@@ -18,7 +18,7 @@
   <br>
   <div class="columns">
     <div class="column has-text-centered">
-      <img alt="Homer" src={homer2} width="300"/>
+      <img alt="waveicon" src={waveicon} width="300"/>
     </div>
     <div class="column box has-text-centered">
       <h1 class="title is-4">SurfSpot Details</h1>

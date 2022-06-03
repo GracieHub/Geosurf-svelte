@@ -15,7 +15,7 @@ export const surfspot = writable({
   typeOfWave: "",
 });
 
-export const colleciton = writable({
+export const collection = writable({
     id: "",
     title: "",
     parsedURL:","

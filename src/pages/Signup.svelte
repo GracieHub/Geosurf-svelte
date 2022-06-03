@@ -1,5 +1,5 @@
 <script>
-  import homer2 from "/src/assets/homer2.png";
+  import TramoreBeach1 from "/src/assets/TramoreBeach1.jpg";
   import WelcomeNavigator from "../components/WelcomeNavigator.svelte";
   import TitleBar from "../components/TitleBar.svelte";
   import SignupForm from "../components/SignupForm.svelte";
@@ -22,6 +22,6 @@
     </div>
   </div>
   <div class="column has-text-centered">
-    <img alt="homer" src="{homer2}" width="300">
+    <img alt="waveicon" src="{TramoreBeach1}" width="800">
   </div>
 </div>

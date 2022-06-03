@@ -1,5 +1,5 @@
 <script>
-  import homer2 from "/src/assets/homer2.png";
+  import Incredible4 from "/src/assets/Incredible4.jpg";
   import WelcomeNavigator from "../components/WelcomeNavigator.svelte";
   import TitleBar from "../components/TitleBar.svelte";
   import LoginForm from "../components/LoginForm.svelte";
@@ -16,7 +16,7 @@
 
 <div class="columns">
   <div class="column has-text-centered">
-    <img alt="homer" src="{homer2}" width="300">
+    <img alt="surf" src="{Incredible4}" width="800">
   </div>
   <div class="column">
     <div class="box">

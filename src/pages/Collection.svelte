@@ -3,7 +3,8 @@
   import TitleBar from "../components/TitleBar.svelte";
   import MainNavigator from "../components/MainNavigator.svelte";
   import SurfspotForm from "../components/SurfspotForm.svelte";
-  import SurfspotMap from "../components/SurfspotMap.svelte";
+  import CollectionMap from "../components/CollectionMap.svelte";
+
 
   let surfspotMap = null;
 
@@ -24,13 +25,15 @@
 </div>
 <div><SurfspotList/>
 </div>
+<br>
 <div class="columns">
   <div class="column has-text-centered">
-    <SurfspotMap bind:this={surfspotMap}/>
+    <CollectionMap bind:this={surfspotMap}/>
   </div>
   <div class="column box has-text-centered">
     <h1 class="title is-4">Add a New Surfspot</h1>
     <SurfspotForm on:message={surfspotAdded}/>
   </div>
+
    
 </section>
