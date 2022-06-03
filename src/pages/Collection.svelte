@@ -25,6 +25,7 @@
 </div>
 <div><SurfspotList/>
 </div>
+<br>
 <div class="columns">
   <div class="column has-text-centered">
     <CollectionMap bind:this={surfspotMap}/>
@@ -33,6 +34,6 @@
     <h1 class="title is-4">Add a New Surfspot</h1>
     <SurfspotForm on:message={surfspotAdded}/>
   </div>
-  
+
    
 </section>

@@ -4,6 +4,9 @@
     import TitleBar from "../components/TitleBar.svelte";
     import MainNavigator from "../components/MainNavigator.svelte";
     import SurfspotsByTypeOfWave from "../components/SurfspotsByTypeOfWave.svelte";
+    import Analytics from "../components/Analytics.svelte";
+    import CollectionList from "../components/CollectionList.svelte";
+
 
 </script>
   
@@ -15,6 +18,10 @@
       <MainNavigator/>
     </div>
   </div>
+  <div class="column">
+    <Analytics/>
+</div>
+<br>
   <div class="columns">
     <div class="column has-text-centered">
       <img alt="WaveDroneShot" src={WaveDrone} width="600"/>

@@ -1,5 +1,5 @@
 <script>
-  import homer from "/src/assets/homer.png";
+  import Incredible from "/src/assets/Incredible3.jpg";
   import WelcomeNavigator from "../components/WelcomeNavigator.svelte";
   import TitleBar from "../components/TitleBar.svelte";
   import {getContext} from "svelte";
@@ -17,12 +17,11 @@
   </div>
 </div>
 
-<div class="columns is-vcentered content">
+
   <div class="column has-text-centered">
-    <img width="300" src="{homer}" alt="homer">
-  </div>
   <div class="column">
-    <h1 class="title">Main Page</h1>
-    <p>Dd something!</p>
+    <h1 class="title">Welcome to Geosurf</h1>
+    <p>Time to Share your favourite locations to surf around the World!</p>
   </div>
 </div>
+<img width="1400" src="{Incredible}" alt="waveicon">

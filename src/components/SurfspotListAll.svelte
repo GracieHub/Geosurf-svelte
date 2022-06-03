@@ -9,7 +9,7 @@
   });
 </script>
 
-<table class="table is-fullwidth">
+<table class="table is-fullwidth" style="background-color:#B0E0E6">
   <thead>
     <th>SurfSpot Name</th>
     <th>Latitude</th>

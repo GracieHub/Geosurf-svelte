@@ -152,4 +152,15 @@ export class GeosurfService {
     }
 }
 
+async deletePoi(parsedURL) {
+  try {
+      const response = await axios.delete(this.baseUrl + "/api/surfspots/" + parsedURL);
+      console.log(response.data)
+      return true;
+  } catch (error) {
+      return false;
+  }
+}
+
+
 }

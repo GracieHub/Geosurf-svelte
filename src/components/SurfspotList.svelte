@@ -4,6 +4,8 @@
     const geosurfService = getContext("GeosurfService");
     let surfspotList = [];
     let url = ``;
+    let errorMessage ='';
+    let id = "";
   
     onMount(async (request) => {
       url = window.location.href
@@ -13,9 +15,19 @@
       console.log(surfspotList)
   });
 
+  async function deleteHandler(id) {
+        url = window.location.href
+        let parsedURL = url.substring(35)
+        const success = await geosurfService.deleteSurfspot(parsedURL)
+        if (success) {
+            surfspotList = await geosurfService.getSurfspots();   //refreshes the list
+        } else {
+            errorMessage = "Error Deleting Surf Spot";
+        }
+    }
 
 </script>
-  <table class="table is-fullwidth">
+  <table class="table is-fullwidth" style="background-color:#bfe7f2">
     <thead>
       <th>SurfSpot Name</th>
       <th>Latitude</th>
@@ -39,10 +51,13 @@
           </td>
           <td>
            <a href="/#/surfspot/{surfspots._id}" class=“button”>
-            <span class="icon is-small">
-             <i class="fas fa-folder-open"></i>
+            <span class="icon is-large">
+             <i class="fas fa-map-marker-alt teal-color" style="font-size:35px;"></i>
             </span>
             </a>
+          </td>
+          <td>
+            <button on:click={deleteHandler(surfspots._id)} class="fas fa-trash-alt" style="color:red" title="delete"></button>
           </td>
         </tr>
         {/each}
