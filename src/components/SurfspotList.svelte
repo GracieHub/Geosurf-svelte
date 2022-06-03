@@ -15,7 +15,7 @@
       console.log(surfspotList)
   });
 
-  async function deleteHandler(id) {
+  async function deleteHandler(id) {         //tried bu not working.. see release 3 for html code also in form below
         url = window.location.href
         let parsedURL = url.substring(35)
         const success = await geosurfService.deleteSurfspot(parsedURL)
@@ -25,6 +25,9 @@
             errorMessage = "Error Deleting Surf Spot";
         }
     }
+
+//  code that was taken out of form below  <button on:click={deleteHandler(surfspots._id)} class="fas fa-trash-alt" style="color:red" title="delete"></button>
+
 
 </script>
   <table class="table is-fullwidth" style="background-color:#bfe7f2">
@@ -55,9 +58,6 @@
              <i class="fas fa-map-marker-alt teal-color" style="font-size:35px;"></i>
             </span>
             </a>
-          </td>
-          <td>
-            <button on:click={deleteHandler(surfspots._id)} class="fas fa-trash-alt" style="color:red" title="delete"></button>
           </td>
         </tr>
         {/each}
