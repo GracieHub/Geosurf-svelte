@@ -13,19 +13,26 @@
   </script>
   
     <section>
-    <thead>
-      <th>Collection Name</th>
-    </thead>
-      {#each collectionList as collection}
-      <div class="box box-link-hover-shadow">
-        <h2 class="title">
-          {collection.title}
-        </h2>
-        <a href="/#/collection/{collection._id}" class="button">
-          <span class="icon is-small">
-            <i class="fas fa-folder-open"></i>
-          </span>
-        </a>
-      </div>
-      {/each}
-    </section>
+    <h4 class="uk-heading-bullet"><a href="/#/report">Show All SurfSpots</a></h4>
+    <br>
+    <table class="uk-table large">
+      <thead>
+          <tr>
+              <th>Select Based on Category</th>
+          </tr>
+      </thead>
+      <tbody>
+        {#each collectionList as collection}
+        <tr>
+          <td>
+            {collection.title}
+          </td>
+          <td>
+            <a href="/#/collection/{collection._id}" class="icon is-small fas fa-th-list">
+            </a>
+          </td>
+        </tr>
+        {/each}
+    </tbody>
+</table>
+</section>

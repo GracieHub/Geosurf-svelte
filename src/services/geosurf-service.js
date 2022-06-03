@@ -1,5 +1,6 @@
 import axios from "axios";
 import {user, surfspot} from "../stores";
+import {push} from "svelte-spa-router";
 
 
 export class GeosurfService {
@@ -9,12 +10,13 @@ export class GeosurfService {
 
   constructor(baseUrl) {
     this.baseUrl = baseUrl;
-    const surfspotCredentials = localStorage.poi;
+    const surfspotCredentials = localStorage.surfspot;
     if (surfspotCredentials) {
       const savedUser = JSON.parse(surfspotCredentials);
       user.set({
         email: savedUser.email,
         token: savedUser.token,
+        userid: savedUser.id
       });
       axios.defaults.headers.common["Authorization"] = "Bearer " + savedUser.token;
     }
@@ -29,8 +31,9 @@ export class GeosurfService {
         user.set({
           email: email,
           token: response.data.token,
+          userid: response.data.id
         });
-        localStorage.geosurf = JSON.stringify({email: email, token: response.data.token});
+        localStorage.surfspot = JSON.stringify({email: email, token: response.data.token});
         return true;
       }
       return false;
@@ -43,6 +46,7 @@ export class GeosurfService {
     user.set({
       email: "",
       token: "",
+      userid: "",
     });
     axios.defaults.headers.common["Authorization"] = "";
     localStorage.removeItem("surfspot");
@@ -67,12 +71,13 @@ export class GeosurfService {
     try {
       const response = await axios.get(this.baseUrl + "/api/surfspots");
       return response.data;
+     
     } catch (error) {
       return [];
     }
   }
 
-  async getSurfspotsByCategoryId(parsedURL) {
+  async getSurfspotsByCollectionId(parsedURL) {
     try {
       const response = await axios.get(this.baseUrl + "/api/collections/"+parsedURL+"/surfspots");
       return response.data;
@@ -81,9 +86,9 @@ export class GeosurfService {
   }
 } 
 
-  async addSurfspot(surfspot) {
+  async addSurfspot(surfspot, parsedURL) {
     try {
-        const response = await axios.post(this.baseUrl + "/api/collections/" + surfspot.collection + "/surfspot", surfspot);
+        const response = await axios.post(this.baseUrl + "/api/collections/" + parsedURL + "/surfspot", surfspot);
         return response.status == 200;
     } catch (error) {
         return false;
@@ -91,6 +96,15 @@ export class GeosurfService {
   } 
 
   async getCollections() {
+    try {
+      const response = await axios.get(this.baseUrl + "/api/collections");
+      return response.data
+    } catch (error) {
+      return [];
+    }
+  } 
+
+  async getCollectionsById() {
     try {
       const response = await axios.get(this.baseUrl + "/api/collections");
       return response.data
@@ -127,5 +141,15 @@ export class GeosurfService {
       return [];
     }
   }
+
+  async getUsers() {
+    try {
+        const response = await axios.get(this.baseUrl + "/api/users")
+        this.userList = await response.data;
+        return this.userList;
+    } catch (error) {
+        return [];
+    }
+}
 
 }

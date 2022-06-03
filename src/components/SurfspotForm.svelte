@@ -1,58 +1,69 @@
 <script>
 
-import {getContext, onMount} from "svelte";
-import {push} from "svelte-spa-router";
+import {createEventDispatcher,getContext, onMount} from "svelte";
+import Coordinates from "./Coordinates.svelte";
 
-const geosurfService = getContext("GeosurfService");
+const dispatch = createEventDispatcher();
 
     let collectionList = [];
     let name = "";
-    let latitude = 0;
-    let longitude = 0;
-    let typeOfWave = "";
+    let latitude = 52.160858;
+    let longitude = -7.152420;
+    let typeOfWave = ["Beginner", "Intermediate", "Advanced", "Pro"];
     let errorMessage = "";
     let message = "Enter All fields to add a spot";
+    let selectedTypeOfWave = "";
+    let url = ``;
 
- // onMount(async () => {
- //   collectionList = await geosurfService.getCollections()
- // });
+    url = window.location.href
+      console.log(url)
+      let parsedURL = url.substring(35)
+
+const geosurfService = getContext("GeosurfService");
+
+  onMount(async () => {
+    collectionList = await geosurfService.getCollections()
+  });
 
   async function addSurfspot() {
     if (name && latitude && longitude && typeOfWave) {
-      const collection = collectionList.find(collection => collection.title && collection._id);
+      const collection = collectionList.find(collection => collection.title);
       const surfspot = {
         name: name,
         latitude: latitude,
         longitude: longitude,
-        typeOfWave: typeOfWave,
-    //    collection: collection._id,
+        typeOfWave: selectedTypeOfWave,
+        collection: collection._id,
       };
-    const success = await geosurfService.addSurfspot(surfspot)
+    const success = await geosurfService.addSurfspot(surfspot, parsedURL)
         if (success) {
-            await push("/collection/*");    //display the surfspot list upon addition of new surfspot
-      } else {
-            errorMessage = "Addition of Surfspot not completed - some error occurred";
+          message = `You added ${name} to the ${collection.title} Collection`
+          dispatch("message");
+          return;
+      //    await push("/dashboard");             //display the colleciton list upon addition of new collection
+          } else {
+              errorMessage = "error adding Collection";
+
         }
-    }
+      }
   }
+
   
 </script>
-<form on:click|preventDefault={addSurfspot}>
+<form on:submit|preventDefault={addSurfspot}>
   <div class="field">
     <label class="label" for="name">Enter SurfSpot Name</label> 
     <input bind:value={name} class="input" id="name" name="name" placeholder="SurfSpot Name" type="text">
   </div>
   <div class="field">
-    <label class="label" for="text">Enter Latitude</label>
-    <input bind:value={latitude} class="input" type="number" name="latitude" placeholder="Latitude">
+    <div class="control">
+      {#each typeOfWave as typeOfWave}
+        <input bind:group={selectedTypeOfWave} class="radio" type="radio" value="{typeOfWave}"> {typeOfWave}
+      {/each}
+    </div>
   </div>
-  <div class="field">
-    <label class="label" for="text">Enter Longitude</label>
-    <input bind:value={longitude} class="input" type="number" name="longitude" placeholder="Longitude">
-   </div>
-   <div class="field">
-    <label class="label" for="text">Enter Type of Wave</label>
-    <input bind:value={typeOfWave} class="input" type="text" name="typeOfWave" placeholder="Type of Wave">
+   <div>
+   <Coordinates bind:lat={latitude} bind:lng={longitude}/>
    </div>
     <div class="control">
       <button class="button is-link is-light">Add Surf Spot</button>

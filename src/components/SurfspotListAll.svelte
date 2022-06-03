@@ -2,10 +2,10 @@
   import {getContext, onMount} from 'svelte'
 
   const geosurfService = getContext("GeosurfService");
-  let surfspotList = [];
+  let surfspotListAll = [];
 
   onMount(async () => {
-    surfspotList = await geosurfService.getSurfspots();
+    surfspotListAll = await geosurfService.getSurfspots();
   });
 </script>
 
@@ -17,7 +17,7 @@
     <th>Type of Wave</th>
   </thead>
   <tbody>
-    {#each surfspotList as surfspots}
+    {#each surfspotListAll as surfspots}
       <tr>
         <td>
           {surfspots.name}

@@ -4,6 +4,7 @@
     import MainNavigator from "../components/MainNavigator.svelte";
     import SurfspotView from "../components/SurfspotView.svelte";
 
+
   </script>
   
   <div class="columns is-vcentered">
